@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Marcus Fhrylle Fernandez | Pharmacy &amp; Insurance Virtual Assistant</title>
+<meta name="description" content="Remote virtual assistant for pharmacies, clinics and medical billing teams: insurance verification, prior authorization support, claims and patient accounts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAF8F4;--paper:#fff;--ink:#1E1B18;--muted:#6F675F;--green:#9A5E2F;--accent:#C4906A;--deep:#3A332D;--line:#E4DED5;--serif:"Cormorant Garamond",Georgia,serif;--sans:"Inter",system-ui,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--sans)}
+a{color:var(--green)}a:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+.wrap{max-width:68rem;margin:0 auto;padding:0 1.25rem}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;margin:0}
+em{font-style:italic;color:var(--accent)}
+/* nav */
+.nav{position:sticky;top:0;z-index:5;background:rgba(250,248,244,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:.9rem;padding-bottom:.9rem;gap:1rem;flex-wrap:wrap}
+.brand{font:500 1.7rem var(--serif);color:var(--ink);text-decoration:none}
+.nav ul{display:flex;gap:1.5rem;list-style:none;margin:0;padding:0;align-items:center}
+.nav ul a{color:var(--muted);text-decoration:none;font-size:.78rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase}.nav ul a:hover{color:var(--green)}
+.btn{display:inline-block;background:var(--ink);color:#fff;padding:1rem 1.6rem;border:1px solid var(--ink);border-radius:0;text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.btn:hover{background:var(--deep);border-color:var(--deep)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:#D9D2C7}.btn.ghost:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.nav .btn{padding:.7rem 1.2rem}
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr 1fr;min-height:calc(100vh - 4.5rem)}
+.hero-l{padding:5rem 3rem 4rem max(1.25rem,calc((100vw - 68rem)/2))}
+.eyebrow{display:flex;align-items:center;gap:.9rem;color:var(--green);font-size:.75rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;margin:0 0 2rem}
+.eyebrow:before{content:"";width:2.2rem;height:1px;background:var(--accent);flex:none}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4rem);font-weight:400;line-height:1;margin:0 0 1.2rem}
+.hero h1 em{display:block;font-weight:400}
+.tagline{font:italic 400 1.6rem var(--serif);color:var(--muted);margin:0 0 1.75rem}
+.intro{max-width:30rem;color:#3E3832;line-height:1.9;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;list-style:none;padding:0;margin:2rem 0;max-width:34rem}
+.chips li{border:1px solid #D9D2C7;border-radius:999px;padding:.35rem .9rem;font-size:.85rem}
+.cta{display:flex;gap:.75rem;flex-wrap:wrap}
+.hero-r{background-color:#EFEBE4;background-image:linear-gradient(#E6E0D6 1px,transparent 1px),linear-gradient(90deg,#E6E0D6 1px,transparent 1px);background-size:2.2rem 2.2rem;padding:6rem 4rem 4rem}
+.panel-title{margin:0;padding-bottom:1.2rem;border-bottom:1px solid #D9D2C7;color:var(--green);font-size:.75rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
+.stat{padding:1.5rem 0 1.1rem;border-bottom:1px solid #D9D2C7}
+.stat b{display:block;font:400 2.8rem/1 var(--serif)}
+.stat span{color:var(--muted);font-size:.95rem}
+/* sections */
+section.s{padding:4rem 0;border-top:1px solid var(--line)}
+.kicker{color:var(--green);font-weight:600;margin:0 0 .5rem}
+section h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:.75rem}
+.sub{color:var(--muted);max-width:38rem;margin:0 0 2rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.25rem}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:2px;padding:1.5rem}
+.card .ic{font-size:1.7rem;display:block;margin-bottom:.6rem}
+.card h3{font-size:1.2rem;margin-bottom:.4rem}.card p{margin:0;color:var(--muted)}
+.work{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(20rem,1fr))}
+.work .num{font:500 1rem var(--serif);color:var(--green)}
+.work h3{font-size:1.15rem;margin:.3rem 0 .5rem}
+.tag{display:inline-block;margin-top:.9rem;font-size:.85rem;font-weight:600;background:#F1E6DA;color:var(--deep);border-radius:999px;padding:.2rem .7rem}
+#tools{background:#1E1B18;border-top:0}
+#tools h2{color:#F5EFE6}#tools em{color:#D9A678}#tools .kicker{color:#D9A678}#tools .sub{color:#A39A90}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(10.5rem,1fr));border:1px solid #3A332D}
+.tool{padding:1.4rem 1.3rem;border-right:1px solid #3A332D;border-bottom:1px solid #3A332D;margin:0 -1px -1px 0}
+.tool b{display:block;font:500 1.2rem var(--serif);color:#F5EFE6;margin-bottom:.35rem}
+.tool span{display:block;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:#D9A678;margin-bottom:.6rem}
+.lv{display:flex;gap:6px}.lv i{width:1.7rem;height:3px;background:#3A332D}
+.l1 .lv i:nth-child(-n+1),.l2 .lv i:nth-child(-n+2),.l3 .lv i{background:#D9A678}
+#tools .banner{border:1px solid #3A332D}
+/* trial banner */
+.banner{background:var(--deep);color:#fff;border-radius:18px;padding:2.5rem 1.5rem;text-align:center;margin:1rem 0 0}
+.banner h2{color:#fff;font-size:1.8rem}.banner em{color:#9BE0C5}
+.banner p{max-width:34rem;margin:.75rem auto 1.5rem;color:#D4E8DF}
+.banner .btn{background:#fff;color:var(--deep);border-color:#fff}.banner .btn:hover{background:#9BE0C5;border-color:#9BE0C5}
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.links{display:grid;gap:.9rem;align-content:start}
+.link{display:block;background:var(--paper);border:1px solid var(--line);border-radius:2px;padding:1rem 1.2rem;text-decoration:none;color:var(--ink)}
+.link:hover{border-color:var(--green)}.link small{display:block;color:var(--muted)}
+.how{background:var(--paper);border:1px solid var(--line);border-radius:2px;padding:1.75rem}
+.how h3{font-size:1.4rem;margin:.3rem 0 .8rem}.how p{margin:0 0 .8rem;color:var(--muted)}
+.status{font-weight:600;color:var(--green)}
+footer{border-top:1px solid var(--line);padding:2rem 0 calc(2rem + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:.95rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+@media(max-width:46rem){.contact{grid-template-columns:1fr}.nav ul{gap:1rem;font-size:.95rem}.nav li.hide{display:none}.hero{grid-template-columns:1fr}.hero-l{padding:2.5rem 1.25rem}.hero-r{padding:2.5rem 1.25rem}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="#hero">Marcus.</a>
+  <ul>
+    <li><a href="#services">Services</a></li><li><a href="#work">Work</a></li><li><a href="#tools">Tools</a></li>
+    <li><a class="btn" href="#contact">Let’s Talk</a></li>
+  </ul>
+</div></header>
+
+<main>
+<section class="hero" id="hero">
+  <div class="hero-l">
+    <p class="eyebrow">Pharmacy &amp; Insurance Virtual Assistant · Remote-Ready</p>
+    <h1>Marcus Fhrylle <em>Fernandez</em></h1>
+    <p class="tagline">Accurate healthcare admin support, wherever you are.</p>
+    <p class="intro">I help pharmacies, clinics and medical billing teams save time by handling insurance verification, prior authorizations, claims support and patient accounts, so your staff can focus on patients.</p>
+    <ul class="chips" aria-label="Skills"><li>Insurance Verification</li><li>Prior Authorization</li><li>Claims Support</li><li>Patient Accounts</li><li>Data Entry</li></ul>
+    <div class="cta"><a class="btn" href="#contact">Work With Me</a><a class="btn ghost" href="#work">See My Work →</a></div>
+  </div>
+  <aside class="hero-r" aria-label="What I bring to your team">
+    <p class="panel-title">What I bring to your team</p>
+    <div class="stat"><b>2 yrs</b><span>Pharmacy and insurance support experience</span></div>
+    <div class="stat"><b>Accuracy</b><span>Every prescription, claim and record checked before it moves on</span></div>
+    <div class="stat"><b>Compliance</b><span>Privacy rules and regulatory standards followed on every task</span></div>
+    <div class="stat"><b>Clear updates</b><span>Patients, providers and your staff always know the next step</span></div>
+  </aside>
+</section>
+
+<section class="s" id="services"><div class="wrap">
+  <p class="kicker">What I Do</p>
+  <h2>Services built for <em>busy healthcare teams</em></h2>
+  <p class="sub">Every service is designed to cut errors, speed up approvals and give your staff their time back.</p>
+  <div class="grid">
+    <div class="card"><span class="ic" aria-hidden="true">🩺</span><h3>Insurance Verification</h3><p>Check coverage, copays and plan limits before the visit, so claims are not denied later.</p></div>
+    <div class="card"><span class="ic" aria-hidden="true">📝</span><h3>Prior Authorization Support</h3><p>Gather documents, submit requests and follow up with providers and payers until there is an answer.</p></div>
+    <div class="card"><span class="ic" aria-hidden="true">🧾</span><h3>Claims &amp; Billing Support</h3><p>Review claims for errors, track balances and reconcile patient payments.</p></div>
+    <div class="card"><span class="ic" aria-hidden="true">💊</span><h3>Prescription &amp; Records Entry</h3><p>Accurate patient and prescription records, organized the way your team already works.</p></div>
+    <div class="card"><span class="ic" aria-hidden="true">📅</span><h3>Scheduling &amp; Coordination</h3><p>Book appointments and referrals, and keep patients and providers informed.</p></div>
+  </div>
+</div></section>
+
+<section class="s" id="work"><div class="wrap">
+  <p class="kicker">Portfolio</p>
+  <h2>Work samples &amp; <em>experience</em></h2>
+  <p class="sub">Practice projects built with fictional data, plus real experience. I never share real patient information.</p>
+  <div class="work">
+    <article class="card"><span class="num">01</span><h3><a href="#">Insurance Verification Tracker</a></h3><p>A Google Sheet for tracking eligibility, copays and prior auth needs, with status dropdowns and color coding.</p><span class="tag">Practice Project</span></article>
+    <article class="card"><span class="num">02</span><h3><a href="#">Prior Authorization Tracker</a></h3><p>A tracker with automatic days-open counting, follow-up dates and next actions for every request.</p><span class="tag">Practice Project</span></article>
+    <article class="card"><span class="num">03</span><h3><a href="https://docs.google.com/spreadsheets/d/1Xr9W6KduCTGmuzMsGL-2hYj8UWHMYmbR3twtIZTIO9o/edit?usp=sharing" target="_blank" rel="noopener">Prescription Processing Tracker</a></h3><p>A prescription log with coverage checks, accuracy review flags and an automatic summary, showing how I support pharmacists.</p><span class="tag">Practice Project</span></article>  
+    <article class="card"><span class="num">04</span><h3><a href="https://docs.google.com/spreadsheets/d/1_yrYBrxQqR_vsI2NkPHscUZXbx0-WheyaWFTswm3U_Y/edit?usp=sharing" target="_blank" rel="noopener">Appointment Scheduling Tracker</a></h3><p>A scheduling log with reminder alerts, no-show tracking and an automatic summary, so no patient visit slips through.</p><span class="tag">Practice Project</span></article>
+</div>
+</div></section>
+
+<section class="s" id="tools"><div class="wrap">
+  <p class="kicker">My Stack</p>
+  <h2>Tools I <em>work with</em></h2>
+  <p class="sub">The everyday platforms I use to get the work done.</p>
+  <div class="tools">
+    <div class="tool l2"><b>Zoom</b><span>Intermediate</span><div class="lv" aria-hidden="true"><i></i><i></i><i></i></div></div>
+    <div class="tool l2"><b>Google Sheets</b><span>Intermediate</span><div class="lv" aria-hidden="true"><i></i><i></i><i></i></div></div>
+    <div class="tool l2"><b>Microsoft Office</b><span>Intermediate</span><div class="lv" aria-hidden="true"><i></i><i></i><i></i></div></div>
+    <div class="tool l2"><b>ChatGPT (AI)</b><span>Intermediate</span><div class="lv" aria-hidden="true"><i></i><i></i><i></i></div></div>
+    <div class="tool l2"><b>Claude (AI)</b><span>Intermediate</span><div class="lv" aria-hidden="true"><i></i><i></i><i></i></div></div>
+  </div>
+</div></section>
+
+<section class="s" id="contact"><div class="wrap">
+  <p class="kicker">Get In Touch</p>
+  <h2>Let’s work <em>together</em></h2>
+  <p class="sub">Tell me what slows your team down.</p>
+  <div class="contact">
+    <div class="links">
+      <a class="link" href="mailto:mfhrylle@gmail.com?subject=Project%20inquiry">Email<small>mfhrylle@gmail.com</small></a>
+      <a class="link" href="https://www.upwork.com/freelancers/~01cbe153a734a67495?mp_source=share" target="_blank" rel="noopener noreferrer">Upwork<small>https://www.upwork.com/freelancers/~01cbe153a734a67495?mp_source=share</small></a>
+      <a class="link" href="https://drive.google.com/file/d/1yqqM0JPFWXVVMacg-zovnT85DbaecAzB/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume<small>https://drive.google.com/file/d/1yqqM0JPFWXVVMacg-zovnT85DbaecAzB/view?usp=sharing</small></a>
+    </div>
+    <div class="how">
+      <h3>Contact me now!</h3>
+      <p>The best way to reach me is by email. Tell me a little about your business and what you need help with, and I’ll reply within one business day with questions or next steps. You can also message me on Upwork. I follow your privacy rules and any agreement we sign, and I never store patient data on personal devices.</p>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><strong>Marcus Fhrylle Fernandez</strong><span>© 2026 · Pharmacy &amp; Insurance Virtual Assistant · Quezon City, Philippines</span></div></footer>
+</body>
+</html>
