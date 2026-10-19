@@ -98,6 +98,56 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem
 .js .card.done:hover{transform:translateY(-4px);border-color:var(--accent)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .reveal,.js .reveal.in,.js .reveal.reset{opacity:1;transform:none;transition:none}}
 @media(max-width:46rem){.contact{grid-template-columns:1fr}.nav ul{gap:1rem}.hero{grid-template-columns:1fr}.hero-l{padding:2.5rem 1.25rem}.hero-r{padding:2.5rem 1.25rem}.nav ul a:not(.btn){display:none}}
+/* ===== MINI GAME ===== */
+:root{--ok:#2F7D5B;--bad:#B3402F}
+:root[data-theme="dark"]{--ok:#6CC49B;--bad:#E58A7B}
+.game{background:var(--paper);border:1px solid var(--line);border-radius:2px;padding:1.75rem;max-width:44rem}
+.g-top{display:flex;justify-content:space-between;color:var(--muted);font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.g-top:focus{outline:none}
+.g-bar{height:3px;background:var(--rule);margin:.8rem 0 1.4rem}.g-bar i{display:block;height:100%;background:var(--accent);transition:width .4s ease}
+.rx-label{margin:0 0 1.4rem;border:2px solid var(--ink);border-radius:4px}
+.rx-label div{display:grid;grid-template-columns:9.5rem 1fr;gap:1rem;padding:.6rem 1rem;border-bottom:1px solid var(--line)}
+.rx-label div:last-child{border-bottom:0}
+.rx-label dt{color:var(--muted);font-size:.85rem;font-weight:600}.rx-label dd{margin:0}
+.g-q{font:500 1.4rem var(--serif);margin:0 0 .8rem}
+.g-opts{display:grid;gap:.6rem}
+.g-opt{text-align:left;font:inherit;color:var(--ink);background:transparent;border:1px solid var(--rule);border-radius:2px;padding:.8rem 1rem;cursor:pointer}
+.g-opt:hover:not(:disabled){border-color:var(--accent)}
+.g-opt:disabled{cursor:default}
+.g-opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,transparent)}
+.g-opt.no{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,transparent)}
+.g-fb{margin:1rem 0 0;color:var(--body)}
+.g-fb b.ok{color:var(--ok)}.g-fb b.no{color:var(--bad)}
+.g-actions{margin-top:1.1rem;display:flex;gap:.75rem;flex-wrap:wrap}
+.g-big{font:400 3.4rem/1 var(--serif);margin:.4rem 0}
+.g-note{color:var(--muted);font-size:.85rem;margin:1.2rem 0 0}
+@media(max-width:34rem){.rx-label div{grid-template-columns:1fr;gap:.1rem}}
+
+/* ===== ADDED QUIZ GATE STYLES ===== */
+#tools, #contact, footer {
+  transition: filter 0.4s ease, opacity 0.4s ease;
+}
+body.quiz-locked #tools,
+body.quiz-locked #contact,
+body.quiz-locked footer {
+  filter: blur(6px);
+  opacity: 0.15;
+  pointer-events: none;
+  user-select: none;
+}
+.quiz-gate-msg {
+  display: none;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--tag-bg);
+  color: var(--tag-fg);
+  text-align: center;
+  border-radius: 2px;
+  font-size: 0.9rem;
+}
+body.quiz-locked .quiz-gate-msg {
+  display: block;
+}
 </style>
 </head>
 <body>
@@ -154,6 +204,17 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem
     <article class="card"><span class="num">02</span><h3><a href="https://docs.google.com/spreadsheets/d/1b1jOcc8BvV131M73-nA8u4eXtutUwMA2ttRXRjg3Zhw/edit?usp=sharing" target="_blank" rel="noopener">Prior Authorization Tracker</a></h3><p>A tracker with automatic days-open counting, follow-up dates and next actions for every request.</p><span class="tag">Practice Project</span></article>
     <article class="card"><span class="num">03</span><h3><a href="https://docs.google.com/spreadsheets/d/1Xr9W6KduCTGmuzMsGL-2hYj8UWHMYmbR3twtIZTIO9o/edit?usp=sharing" target="_blank" rel="noopener">Prescription Processing Tracker</a></h3><p>A prescription log with coverage checks, accuracy review flags and an automatic summary, showing how I support pharmacists.</p><span class="tag">Practice Project</span></article>
     <article class="card"><span class="num">04</span><h3><a href="https://docs.google.com/spreadsheets/d/1_yrYBrxQqR_vsI2NkPHscUZXbx0-WheyaWFTswm3U_Y/edit?usp=sharing" target="_blank" rel="noopener">Appointment Scheduling Tracker</a></h3><p>A scheduling log with reminder alerts, no-show tracking and an automatic summary, so no patient visit slips through.</p><span class="tag">Practice Project</span></article>
+  </div>
+</div></section>
+
+<section class="s" id="meet"><div class="wrap">
+  <p class="kicker">Woops wait a sec! 😄</p>
+  <p class="kicker">Get To Know Me</p>
+  <h2>How well do you <em>know Marcus?</em></h2>
+  <p class="sub">Four quick questions about me. Let’s see how you do! 😄</p>
+  <div class="game" id="meetgame">
+    <p>Ready? Pick the answer you think is right.</p>
+    <div class="g-actions"><button class="btn" type="button" data-act="start">Start the quiz</button></div>
   </div>
 </div></section>
 
@@ -231,6 +292,92 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem
       else if(!e.isIntersecting)reset(e.target)})},
     {threshold:[0,0.15],rootMargin:'0px 0px -6% 0px'});
   items.forEach(function(el){io.observe(el)});
+})();
+</script>
+
+<script>
+/* How well do you know Marcus? quiz + Scroll Gate */
+(function(){
+  var box=document.getElementById('meetgame');if(!box)return;
+  
+  /* Lock page sections below the quiz on load */
+  document.body.classList.add('quiz-locked');
+
+  var qs=[
+   {q:'What is Marcus’s favorite food?',
+    o:['Sushi','Fried chicken','Pizza','Salad'],ok:1,
+    why:'Fried chicken, every time! 🍗'},
+   {q:'What does Marcus want in his future life?',
+    o:['To become a rockstar and tour the world','To run a giant tech company','To live in a cabin with no internet','A peaceful life and a coffee shop business'],ok:3,
+    why:'A peaceful life and a coffee shop business. ☕'},
+   {q:'What are Marcus’s hobbies?',
+    o:['Gardening, knitting and chess','Skydiving, surfing and painting','Playing guitar, playing computer games and riding a motorcycle to new places','Baking, yoga and bird watching'],ok:2,
+    why:'Guitar 🎸, computer games 🎮, and motorcycle rides to new places 🏍️.'},
+   {q:'Why will you hire Marcus?',
+    o:['Because he works for free','Because he can play guitar during meetings','Because you save money with accurate work, and both of you win!','Because he never blinks'],ok:2,
+    why:'Accurate work saves you money, so both of us are winners! 😄'}
+  ];
+  var i=0,score=0,done=false;
+
+  function unlockAndScroll(){
+    document.body.classList.remove('quiz-locked');
+    var toolsSec = document.getElementById('tools');
+    if(toolsSec) toolsSec.scrollIntoView({behavior: 'smooth'});
+  }
+
+  function renderInitial(){
+    box.innerHTML='<p>Ready? Pick the answer you think is right.</p>'+
+      '<div class="g-actions">'+
+      '<button class="btn" type="button" data-act="start">Start the quiz</button>'+
+      '<button class="btn ghost" type="button" data-act="pass">Pass / Skip &amp; Continue</button>'+
+      '</div>'+
+      '<div class="quiz-gate-msg">🔒 Information below is locked. Answer the quiz or click "Pass / Skip & Continue" to proceed downwards.</div>';
+  }
+
+  function render(){
+    var c=qs[i],btns='';
+    c.o.forEach(function(t,n){btns+='<button class="g-opt" type="button" data-i="'+n+'">'+t+'</button>'});
+    box.innerHTML='<div class="g-top" tabindex="-1"><span>Question '+(i+1)+' of '+qs.length+'</span><span>Score: '+score+'</span></div>'+
+      '<div class="g-bar"><i style="width:'+(i/qs.length*100)+'%"></i></div>'+
+      '<p class="g-q">'+c.q+'</p><div class="g-opts">'+btns+'</div>'+
+      '<div class="g-fb" role="status" aria-live="polite"></div><div class="g-actions"></div>'+
+      '<div class="quiz-gate-msg">🔒 Information below is locked until quiz is completed or passed.</div>';
+    done=false;if(i>0)box.querySelector('.g-top').focus({preventScroll:true})}
+
+  function result(){
+    var m=score===qs.length?'You know me well! 🎉 Now imagine that kind of attention on your team’s work.':score>=2?'Not bad! You’re getting to know me. 😊':'Ha! Let’s chat so you can get to know me better. 😄';
+    box.innerHTML='<div class="g-top" tabindex="-1"><span>Quiz complete</span></div><div class="g-bar"><i style="width:100%"></i></div>'+
+      '<p class="g-big">'+score+' / '+qs.length+'</p><p>'+m+'</p>'+
+      '<div class="g-actions">'+
+      '<button class="btn" type="button" data-act="unlock">Continue to Information ↓</button>'+
+      '<button class="btn ghost" type="button" data-act="again">Play again</button>'+
+      '</div>'+
+      '<div class="quiz-gate-msg">🎉 Quiz completed! Click "Continue to Information" to unlock and scroll down.</div>';
+    box.querySelector('.g-top').focus({preventScroll:true})}
+
+  /* Initial render with Pass / Skip option */
+  renderInitial();
+
+  box.addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    var act=b.getAttribute('data-act');
+    if(act==='start'){i=0;score=0;render();return}
+    if(act==='pass'){
+      unlockAndScroll();
+      box.innerHTML='<p><b>Quiz passed &amp; skipped!</b> You can now scroll down freely.</p><div class="g-actions"><button class="btn" type="button" data-act="again">Take quiz anyway</button><a class="btn ghost" href="#tools">Go to Tools →</a></div>';
+      return;
+    }
+    if(act==='unlock'){unlockAndScroll();return}
+    if(act==='again'){i=0;score=0;render();return}
+    if(act==='next'){i++;if(i<qs.length)render();else result();return}
+    if(b.hasAttribute('data-i')&&!done){
+      done=true;var c=qs[i],pick=+b.getAttribute('data-i'),good=pick===c.ok;
+      if(good)score++;
+      box.querySelectorAll('.g-opt').forEach(function(o,n){o.disabled=true;if(n===c.ok)o.classList.add('ok');else if(n===pick)o.classList.add('no')});
+      box.querySelector('.g-fb').innerHTML='<b class="'+(good?'ok':'no')+'">'+(good?'Correct! ':'Not quite. ')+'</b>'+c.why;
+      box.querySelector('.g-actions').innerHTML='<button class="btn" type="button" data-act="next">'+(i<qs.length-1?'Next question \u2192':'See my result')+'</button>';
+      box.querySelector('.g-top span:last-child').textContent='Score: '+score}
+  });
 })();
 </script>
 </body>
