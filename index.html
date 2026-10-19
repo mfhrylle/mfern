@@ -5,27 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Marcus Fhrylle Fernandez | Pharmacy &amp; Insurance Virtual Assistant</title>
 <meta name="description" content="Remote virtual assistant for pharmacies, clinics and medical billing teams: insurance verification, prior authorization support, claims and patient accounts.">
+<script>
+/* Runs first so the page never flashes the wrong theme */
+(function(){var r=document.documentElement,t=null;r.classList.add('js');
+try{t=localStorage.getItem('theme')}catch(e){}
+if(!t){t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+r.setAttribute('data-theme',t)})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#FAF8F4;--paper:#fff;--ink:#1E1B18;--muted:#6F675F;--green:#9A5E2F;--accent:#C4906A;--deep:#3A332D;--line:#E4DED5;--serif:"Cormorant Garamond",Georgia,serif;--sans:"Inter",system-ui,sans-serif}
+/* ===== THEME COLORS: edit these to change the look ===== */
+:root{--bg:#FAF8F4;--paper:#fff;--ink:#1E1B18;--muted:#6F675F;--green:#9A5E2F;--accent:#C4906A;--line:#E4DED5;--rule:#D9D2C7;--body:#3E3832;
+--btn-bg:#1E1B18;--btn-fg:#fff;--btn-hover:#3A332D;--tag-bg:#F1E6DA;--tag-fg:#3A332D;--panel:#EFEBE4;--grid:#E6E0D6;--nav-bg:rgba(250,248,244,.94);
+--serif:"Cormorant Garamond",Georgia,serif;--sans:"Inter",system-ui,sans-serif;color-scheme:light}
+:root[data-theme="dark"]{--bg:#14110F;--paper:#1D1916;--ink:#F3ECE3;--muted:#A39A90;--green:#D9A678;--accent:#D9A678;--line:#2E2823;--rule:#3A332D;--body:#CFC6BB;
+--btn-bg:#F3ECE3;--btn-fg:#14110F;--btn-hover:#D9A678;--tag-bg:#2B2420;--tag-fg:#E8D9C8;--panel:#1B1714;--grid:#26201C;--nav-bg:rgba(20,17,15,.92);color-scheme:dark}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--sans)}
-a{color:var(--green)}a:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--sans);transition:background-color .3s ease,color .3s ease}
+a{color:var(--green)}a:focus-visible,button:focus-visible{outline:3px solid var(--green);outline-offset:3px}
 .wrap{max-width:68rem;margin:0 auto;padding:0 1.25rem}
 h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;margin:0}
 em{font-style:italic;color:var(--accent)}
 /* nav */
-.nav{position:sticky;top:0;z-index:5;background:rgba(250,248,244,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.nav{position:sticky;top:0;z-index:5;background:var(--nav-bg);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px);transition:background-color .3s ease}
 .nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:.9rem;padding-bottom:.9rem;gap:1rem;flex-wrap:wrap}
 .brand{font:500 1.7rem var(--serif);color:var(--ink);text-decoration:none}
 .nav ul{display:flex;gap:1.5rem;list-style:none;margin:0;padding:0;align-items:center}
 .nav ul a{color:var(--muted);text-decoration:none;font-size:.78rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase}.nav ul a:hover{color:var(--green)}
-.btn{display:inline-block;background:var(--ink);color:#fff;padding:1rem 1.6rem;border:1px solid var(--ink);border-radius:0;text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
-.btn:hover{background:var(--deep);border-color:var(--deep)}
-.btn.ghost{background:transparent;color:var(--ink);border-color:#D9D2C7}.btn.ghost:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn{display:inline-block;background:var(--btn-bg);color:var(--btn-fg);padding:1rem 1.6rem;border:1px solid var(--btn-bg);border-radius:0;text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.btn:hover{background:var(--btn-hover);border-color:var(--btn-hover)}
+.nav ul a.btn{color:var(--btn-fg)}.nav ul a.btn:hover{color:var(--btn-fg)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--rule)}.btn.ghost:hover{background:var(--btn-bg);color:var(--btn-fg);border-color:var(--btn-bg)}
 .nav .btn{padding:.7rem 1.2rem}
+/* theme toggle */
+.theme{display:grid;place-items:center;width:2.5rem;height:2.5rem;border:1px solid var(--rule);background:transparent;color:var(--ink);border-radius:50%;cursor:pointer;padding:0}
+.theme:hover{border-color:var(--accent);color:var(--green)}
+.theme svg{width:1.15rem;height:1.15rem;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.theme .sun{display:none}:root[data-theme="dark"] .theme .sun{display:block}:root[data-theme="dark"] .theme .moon{display:none}
 /* hero */
 .hero{display:grid;grid-template-columns:1.05fr 1fr;min-height:calc(100vh - 4.5rem)}
 .hero-l{padding:5rem 3rem 4rem max(1.25rem,calc((100vw - 68rem)/2))}
@@ -34,13 +51,13 @@ em{font-style:italic;color:var(--accent)}
 .hero h1{font-size:clamp(2.4rem,5.5vw,4rem);font-weight:400;line-height:1;margin:0 0 1.2rem}
 .hero h1 em{display:block;font-weight:400}
 .tagline{font:italic 400 1.6rem var(--serif);color:var(--muted);margin:0 0 1.75rem}
-.intro{max-width:30rem;color:#3E3832;line-height:1.9;margin:0}
+.intro{max-width:30rem;color:var(--body);line-height:1.9;margin:0}
 .chips{display:flex;flex-wrap:wrap;gap:.6rem;list-style:none;padding:0;margin:2rem 0;max-width:34rem}
-.chips li{border:1px solid #D9D2C7;border-radius:999px;padding:.35rem .9rem;font-size:.85rem}
+.chips li{border:1px solid var(--rule);border-radius:999px;padding:.35rem .9rem;font-size:.85rem}
 .cta{display:flex;gap:.75rem;flex-wrap:wrap}
-.hero-r{background-color:#EFEBE4;background-image:linear-gradient(#E6E0D6 1px,transparent 1px),linear-gradient(90deg,#E6E0D6 1px,transparent 1px);background-size:2.2rem 2.2rem;padding:6rem 4rem 4rem}
-.panel-title{margin:0;padding-bottom:1.2rem;border-bottom:1px solid #D9D2C7;color:var(--green);font-size:.75rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
-.stat{padding:1.5rem 0 1.1rem;border-bottom:1px solid #D9D2C7}
+.hero-r{background-color:var(--panel);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:2.2rem 2.2rem;padding:6rem 4rem 4rem;transition:background-color .3s ease}
+.panel-title{margin:0;padding-bottom:1.2rem;border-bottom:1px solid var(--rule);color:var(--green);font-size:.75rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
+.stat{padding:1.5rem 0 1.1rem;border-bottom:1px solid var(--rule)}
 .stat b{display:block;font:400 2.8rem/1 var(--serif)}
 .stat span{color:var(--muted);font-size:.95rem}
 /* sections */
@@ -55,7 +72,7 @@ section h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:.75rem}
 .work{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(20rem,1fr))}
 .work .num{font:500 1rem var(--serif);color:var(--green)}
 .work h3{font-size:1.15rem;margin:.3rem 0 .5rem}
-.tag{display:inline-block;margin-top:.9rem;font-size:.85rem;font-weight:600;background:#F1E6DA;color:var(--deep);border-radius:999px;padding:.2rem .7rem}
+.tag{display:inline-block;margin-top:.9rem;font-size:.85rem;font-weight:600;background:var(--tag-bg);color:var(--tag-fg);border-radius:999px;padding:.2rem .7rem}
 #tools{background:#1E1B18;border-top:0}
 #tools h2{color:#F5EFE6}#tools em{color:#D9A678}#tools .kicker{color:#D9A678}#tools .sub{color:#A39A90}
 .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(10.5rem,1fr));border:1px solid #3A332D}
@@ -64,23 +81,23 @@ section h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:.75rem}
 .tool span{display:block;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:#D9A678;margin-bottom:.6rem}
 .lv{display:flex;gap:6px}.lv i{width:1.7rem;height:3px;background:#3A332D}
 .l1 .lv i:nth-child(-n+1),.l2 .lv i:nth-child(-n+2),.l3 .lv i{background:#D9A678}
-#tools .banner{border:1px solid #3A332D}
-/* trial banner */
-.banner{background:var(--deep);color:#fff;border-radius:18px;padding:2.5rem 1.5rem;text-align:center;margin:1rem 0 0}
-.banner h2{color:#fff;font-size:1.8rem}.banner em{color:#9BE0C5}
-.banner p{max-width:34rem;margin:.75rem auto 1.5rem;color:#D4E8DF}
-.banner .btn{background:#fff;color:var(--deep);border-color:#fff}.banner .btn:hover{background:#9BE0C5;border-color:#9BE0C5}
 /* contact */
 .contact{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
 .links{display:grid;gap:.9rem;align-content:start}
-.link{display:block;background:var(--paper);border:1px solid var(--line);border-radius:2px;padding:1rem 1.2rem;text-decoration:none;color:var(--ink)}
+.link{display:block;background:var(--paper);border:1px solid var(--line);border-radius:2px;padding:1rem 1.2rem;text-decoration:none;color:var(--ink);overflow-wrap:anywhere}
 .link:hover{border-color:var(--green)}.link small{display:block;color:var(--muted)}
 .how{background:var(--paper);border:1px solid var(--line);border-radius:2px;padding:1.75rem}
 .how h3{font-size:1.4rem;margin:.3rem 0 .8rem}.how p{margin:0 0 .8rem;color:var(--muted)}
-.status{font-weight:600;color:var(--green)}
 footer{border-top:1px solid var(--line);padding:2rem 0 calc(2rem + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:.95rem}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
-@media(max-width:46rem){.contact{grid-template-columns:1fr}.nav ul{gap:1rem;font-size:.95rem}.nav li.hide{display:none}.hero{grid-template-columns:1fr}.hero-l{padding:2.5rem 1.25rem}.hero-r{padding:2.5rem 1.25rem}}
+/* scroll reveal: items fade up one by one, and replay every time you scroll back */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease var(--d,0ms),transform .7s ease var(--d,0ms)}
+.js .reveal.in{opacity:1;transform:none}
+.js .reveal.reset{transition:none;opacity:0;transform:translateY(26px)}
+.js .reveal.done{transition:transform .25s ease,border-color .25s ease,opacity .25s ease}
+.js .card.done:hover{transform:translateY(-4px);border-color:var(--accent)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .reveal,.js .reveal.in,.js .reveal.reset{opacity:1;transform:none;transition:none}}
+@media(max-width:46rem){.contact{grid-template-columns:1fr}.nav ul{gap:1rem}.hero{grid-template-columns:1fr}.hero-l{padding:2.5rem 1.25rem}.hero-r{padding:2.5rem 1.25rem}.nav ul a:not(.btn){display:none}}
 </style>
 </head>
 <body>
@@ -88,6 +105,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem
   <a class="brand" href="#hero">Marcus.</a>
   <ul>
     <li><a href="#services">Services</a></li><li><a href="#work">Work</a></li><li><a href="#tools">Tools</a></li>
+    <li><button class="theme" id="theme" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button></li>
     <li><a class="btn" href="#contact">Let’s Talk</a></li>
   </ul>
 </div></header>
@@ -131,9 +152,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem
   <div class="work">
     <article class="card"><span class="num">01</span><h3><a href="https://docs.google.com/spreadsheets/d/1EUjqYFsw35n_M5xtbF9-XMsGPcv2Wp6Qjk4TKXaylc0/edit?usp=sharing" target="_blank" rel="noopener">Insurance Verification Tracker</a></h3><p>A Google Sheet for tracking eligibility, copays and prior auth needs, with status dropdowns and color coding.</p><span class="tag">Practice Project</span></article>
     <article class="card"><span class="num">02</span><h3><a href="https://docs.google.com/spreadsheets/d/1b1jOcc8BvV131M73-nA8u4eXtutUwMA2ttRXRjg3Zhw/edit?usp=sharing" target="_blank" rel="noopener">Prior Authorization Tracker</a></h3><p>A tracker with automatic days-open counting, follow-up dates and next actions for every request.</p><span class="tag">Practice Project</span></article>
-    <article class="card"><span class="num">03</span><h3><a href="https://docs.google.com/spreadsheets/d/1Xr9W6KduCTGmuzMsGL-2hYj8UWHMYmbR3twtIZTIO9o/edit?usp=sharing" target="_blank" rel="noopener">Prescription Processing Tracker</a></h3><p>A prescription log with coverage checks, accuracy review flags and an automatic summary, showing how I support pharmacists.</p><span class="tag">Practice Project</span></article>  
+    <article class="card"><span class="num">03</span><h3><a href="https://docs.google.com/spreadsheets/d/1Xr9W6KduCTGmuzMsGL-2hYj8UWHMYmbR3twtIZTIO9o/edit?usp=sharing" target="_blank" rel="noopener">Prescription Processing Tracker</a></h3><p>A prescription log with coverage checks, accuracy review flags and an automatic summary, showing how I support pharmacists.</p><span class="tag">Practice Project</span></article>
     <article class="card"><span class="num">04</span><h3><a href="https://docs.google.com/spreadsheets/d/1_yrYBrxQqR_vsI2NkPHscUZXbx0-WheyaWFTswm3U_Y/edit?usp=sharing" target="_blank" rel="noopener">Appointment Scheduling Tracker</a></h3><p>A scheduling log with reminder alerts, no-show tracking and an automatic summary, so no patient visit slips through.</p><span class="tag">Practice Project</span></article>
-</div>
+  </div>
 </div></section>
 
 <section class="s" id="tools"><div class="wrap">
@@ -152,7 +173,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem
 <section class="s" id="contact"><div class="wrap">
   <p class="kicker">Get In Touch</p>
   <h2>Let’s work <em>together</em></h2>
-  <p class="sub">Tell me what slows your team down.</p>
+  <p class="sub">Tell me what you need and I'm here for you! 😉</p>
   <div class="contact">
     <div class="links">
       <a class="link" href="mailto:mfhrylle@gmail.com?subject=Project%20inquiry">Email<small>mfhrylle@gmail.com</small></a>
@@ -168,5 +189,49 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem
 </main>
 
 <footer><div class="wrap"><strong>Marcus Fhrylle Fernandez</strong><span>© 2026 · Pharmacy &amp; Insurance Virtual Assistant · Quezon City, Philippines</span></div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('theme');
+  /* ---- Light / dark toggle ---- */
+  function sync(){var dark=root.getAttribute('data-theme')==='dark';
+    btn.setAttribute('aria-pressed',dark);
+    btn.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode')}
+  sync();
+  btn.addEventListener('click',function(){
+    var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next)}catch(e){}
+    sync()});
+  /* ---- Scroll reveal, one item after another ---- */
+  var groups=['.hero-l > *','.hero-r > *','.kicker','section h2','.sub','.grid > .card','.work > .card','.tools > .tool','.links > .link','.how'];
+  var items=[];
+  groups.forEach(function(sel){
+    document.querySelectorAll(sel).forEach(function(el){
+      var i=Array.prototype.indexOf.call(el.parentNode.children,el);
+      el.classList.add('reveal');
+      el.style.setProperty('--d',Math.min(i,6)*110+'ms');
+      items.push(el)})});
+  function show(el){
+    clearTimeout(el._t);
+    if(el.classList.contains('in'))return;
+    el.classList.remove('reset');
+    void el.offsetWidth;            /* restart the animation */
+    el.classList.add('in');
+    var d=parseInt(el.style.getPropertyValue('--d'))||0;
+    el._t=setTimeout(function(){el.classList.add('done')},d+800)}
+  function reset(el){                /* hidden again, ready to replay */
+    clearTimeout(el._t);
+    el.classList.remove('in','done');
+    el.classList.add('reset')}
+  if(!('IntersectionObserver' in window)){items.forEach(show);return}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.intersectionRatio>=0.15)show(e.target);
+      else if(!e.isIntersecting)reset(e.target)})},
+    {threshold:[0,0.15],rootMargin:'0px 0px -6% 0px'});
+  items.forEach(function(el){io.observe(el)});
+})();
+</script>
 </body>
 </html>
