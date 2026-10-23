@@ -123,31 +123,6 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem
 .g-note{color:var(--muted);font-size:.85rem;margin:1.2rem 0 0}
 @media(max-width:34rem){.rx-label div{grid-template-columns:1fr;gap:.1rem}}
 
-/* ===== ADDED QUIZ GATE STYLES ===== */
-#tools, #contact, footer {
-  transition: filter 0.4s ease, opacity 0.4s ease;
-}
-body.quiz-locked #tools,
-body.quiz-locked #contact,
-body.quiz-locked footer {
-  filter: blur(6px);
-  opacity: 0.15;
-  pointer-events: none;
-  user-select: none;
-}
-.quiz-gate-msg {
-  display: none;
-  margin-top: 1rem;
-  padding: 1rem;
-  background: var(--tag-bg);
-  color: var(--tag-fg);
-  text-align: center;
-  border-radius: 2px;
-  font-size: 0.9rem;
-}
-body.quiz-locked .quiz-gate-msg {
-  display: block;
-}
 </style>
 </head>
 <body>
@@ -224,10 +199,10 @@ body.quiz-locked .quiz-gate-msg {
   <p class="sub">The everyday platforms I use to get the work done.</p>
   <div class="tools">
     <div class="tool l2"><b>Zoom</b><span>Intermediate</span><div class="lv" aria-hidden="true"><i></i><i></i><i></i></div></div>
-    <div class="tool l3"><b>Google Sheets</b><span>Advance</span><div class="lv" aria-hidden="true"><i></i><i></i><i></i></div></div>
-    <div class="tool l3"><b>Microsoft Office</b><span>Advance</span><div class="lv" aria-hidden="true"><i></i><i></i><i></i></div></div>
-    <div class="tool l3"><b>ChatGPT (AI)</b><span>Advance</span><div class="lv" aria-hidden="true"><i></i><i></i><i></i></div></div>
-    <div class="tool l3"><b>Claude (AI)</b><span>Advance</span><div class="lv" aria-hidden="true"><i></i><i></i><i></i></div></div>
+    <div class="tool l3"><b>Google Sheets</b><span>Advanced</span><div class="lv" aria-hidden="true"><i></i><i></i><i></i></div></div>
+    <div class="tool l3"><b>Microsoft Office</b><span>Advanced</span><div class="lv" aria-hidden="true"><i></i><i></i><i></i></div></div>
+    <div class="tool l3"><b>ChatGPT (AI)</b><span>Advanced</span><div class="lv" aria-hidden="true"><i></i><i></i><i></i></div></div>
+    <div class="tool l3"><b>Claude (AI)</b><span>Advanced</span><div class="lv" aria-hidden="true"><i></i><i></i><i></i></div></div>
   </div>
 </div></section>
 
@@ -296,13 +271,9 @@ body.quiz-locked .quiz-gate-msg {
 </script>
 
 <script>
-/* How well do you know Marcus? quiz + Scroll Gate */
+/* How well do you know Marcus? quiz */
 (function(){
   var box=document.getElementById('meetgame');if(!box)return;
-  
-  /* Lock page sections below the quiz on load */
-  document.body.classList.add('quiz-locked');
-
   var qs=[
    {q:'What is Marcus’s favorite food?',
     o:['Sushi','Fried chicken','Pizza','Salad'],ok:1,
@@ -318,57 +289,24 @@ body.quiz-locked .quiz-gate-msg {
     why:'Accurate work saves you money, so both of us are winners! 😄'}
   ];
   var i=0,score=0,done=false;
-
-  function unlockAndScroll(){
-    document.body.classList.remove('quiz-locked');
-    var toolsSec = document.getElementById('tools');
-    if(toolsSec) toolsSec.scrollIntoView({behavior: 'smooth'});
-  }
-
-  function renderInitial(){
-    box.innerHTML='<p>Ready? Pick the answer you think is right.</p>'+
-      '<div class="g-actions">'+
-      '<button class="btn" type="button" data-act="start">Start the quiz</button>'+
-      '<button class="btn ghost" type="button" data-act="pass">Pass / Skip &amp; Continue</button>'+
-      '</div>'+
-      '<div class="quiz-gate-msg">🔒 Information below is locked. Answer the quiz or click "Pass / Skip & Continue" to proceed downwards.</div>';
-  }
-
   function render(){
     var c=qs[i],btns='';
     c.o.forEach(function(t,n){btns+='<button class="g-opt" type="button" data-i="'+n+'">'+t+'</button>'});
     box.innerHTML='<div class="g-top" tabindex="-1"><span>Question '+(i+1)+' of '+qs.length+'</span><span>Score: '+score+'</span></div>'+
       '<div class="g-bar"><i style="width:'+(i/qs.length*100)+'%"></i></div>'+
       '<p class="g-q">'+c.q+'</p><div class="g-opts">'+btns+'</div>'+
-      '<div class="g-fb" role="status" aria-live="polite"></div><div class="g-actions"></div>'+
-      '<div class="quiz-gate-msg">🔒 Information below is locked until quiz is completed or passed.</div>';
+      '<div class="g-fb" role="status" aria-live="polite"></div><div class="g-actions"></div>';
     done=false;if(i>0)box.querySelector('.g-top').focus({preventScroll:true})}
-
   function result(){
     var m=score===qs.length?'You know me well! 🎉 Now imagine that kind of attention on your team’s work.':score>=2?'Not bad! You’re getting to know me. 😊':'Ha! Let’s chat so you can get to know me better. 😄';
     box.innerHTML='<div class="g-top" tabindex="-1"><span>Quiz complete</span></div><div class="g-bar"><i style="width:100%"></i></div>'+
       '<p class="g-big">'+score+' / '+qs.length+'</p><p>'+m+'</p>'+
-      '<div class="g-actions">'+
-      '<button class="btn" type="button" data-act="unlock">Continue to Information ↓</button>'+
-      '<button class="btn ghost" type="button" data-act="again">Play again</button>'+
-      '</div>'+
-      '<div class="quiz-gate-msg">🎉 Quiz completed! Click "Continue to Information" to unlock and scroll down.</div>';
+      '<div class="g-actions"><button class="btn" type="button" data-act="again">Play again</button><a class="btn ghost" href="#contact">Let\u2019s talk</a></div>';
     box.querySelector('.g-top').focus({preventScroll:true})}
-
-  /* Initial render with Pass / Skip option */
-  renderInitial();
-
   box.addEventListener('click',function(e){
     var b=e.target.closest('button');if(!b)return;
     var act=b.getAttribute('data-act');
-    if(act==='start'){i=0;score=0;render();return}
-    if(act==='pass'){
-      unlockAndScroll();
-      box.innerHTML='<p><b>Quiz passed &amp; skipped!</b> You can now scroll down freely.</p><div class="g-actions"><button class="btn" type="button" data-act="again">Take quiz anyway</button><a class="btn ghost" href="#tools">Go to Tools →</a></div>';
-      return;
-    }
-    if(act==='unlock'){unlockAndScroll();return}
-    if(act==='again'){i=0;score=0;render();return}
+    if(act==='start'||act==='again'){i=0;score=0;render();return}
     if(act==='next'){i++;if(i<qs.length)render();else result();return}
     if(b.hasAttribute('data-i')&&!done){
       done=true;var c=qs[i],pick=+b.getAttribute('data-i'),good=pick===c.ok;
