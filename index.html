@@ -123,6 +123,18 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem
 .g-note{color:var(--muted);font-size:.85rem;margin:1.2rem 0 0}
 @media(max-width:34rem){.rx-label div{grid-template-columns:1fr;gap:.1rem}}
 
+/* ===== CERTIFICATES ===== */
+.certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1.25rem}
+.cert{display:block;width:100%;padding:0;text-align:left;font:inherit;color:inherit;background:var(--paper);border:1px solid var(--line);border-radius:2px;cursor:zoom-in;overflow:hidden}
+.cert:hover{border-color:var(--accent)}
+.cert img{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:var(--panel)}
+.cert span{display:block;padding:.8rem 1rem;font-size:.9rem;color:var(--muted)}
+.cert b{display:block;color:var(--ink);font-weight:600}
+dialog.lb{width:min(92vw,60rem);max-width:none;border:0;padding:0;background:transparent;color:#F3ECE3;overflow:visible}
+dialog.lb::backdrop{background:rgba(10,8,6,.88)}
+.lb img{display:block;max-width:100%;max-height:78vh;margin:0 auto;background:#fff}
+.lb p{text-align:center;margin:.8rem 0 0}
+.lb button{position:absolute;top:-2.6rem;right:0;width:2.2rem;height:2.2rem;border:1px solid #F3ECE3;border-radius:50%;background:transparent;color:#F3ECE3;font-size:1rem;cursor:pointer}
 </style>
 </head>
 <body>
@@ -182,6 +194,23 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem
   </div>
 </div></section>
 
+<section class="s" id="certificates"><div class="wrap">
+  <p class="kicker">Proof</p>
+  <h2>Certificates &amp; <em>recognition</em></h2>
+  <p class="sub">Recognition I received for my performance in past roles. Click an image to enlarge it. Personal and company details are hidden for privacy.</p>
+  <div class="certs">
+ <button class="cert" type="button" data-full="images/TOP1_NPS_Q1-2026.jpg" data-caption="Top 1 in NPS (Q1 2026)"><img src="images/TOP1_NPS_Q1-2026.jpg" alt="Certificate: Top 1 in NPS, Q1 2026" loading="lazy"><span><b>Top 1 in NPS</b>Q1 2026</span></button>
+    <button class="cert" type="button" data-full="images/FCR_94-86.jpg" data-caption="First Call Resolution, Overall Agents (94.86%)"><img src="images/FCR_94-86.jpg" alt="Certificate: First Call Resolution, Overall Agents, 94.86 percent" loading="lazy"><span><b>First Call Resolution, Overall Agents</b>94.86%</span></button>
+    <button class="cert" type="button" data-full="images/TOP3_Q1-2026.jpg" data-caption="Top 3 Agent (Q1 2026)"><img src="images/TOP3_Q1-2026.jpg" alt="Certificate: Top 3 Agent, Q1 2026" loading="lazy"><span><b>Top 3 Agent</b>Q1 2026</span></button>
+    <button class="cert" type="button" data-full="images/certificate_Top3_11-25.jpg" data-caption="Certificate of Recognition: Top 3 Agent (November 2025)"><img src="images/certificate_Top3_11-25.jpg" alt="Certificate of Recognition: Top 3 Agent, November 2025" loading="lazy"><span><b>Certificate of Recognition: Top 3 Agent</b>November 2025</span></button>
+    <button class="cert" type="button" data-full="images/TOP2_10-25.jpg" data-caption="Top 2 Agent (October 2025)"><img src="images/TOP2_10-25.jpg" alt="Certificate: Top 2 Agent, October 2025" loading="lazy"><span><b>Top 2 Agent</b>October 2025</span></button>
+    <button class="cert" type="button" data-full="images/TOP2_09-25.jpg" data-caption="Top 2 Agent (September 2025)"><img src="images/TOP2_09-25.jpg" alt="Certificate: Top 2 Agent, September 2025" loading="lazy"><span><b>Top 2 Agent</b>September 2025</span></button>
+  </div>
+  <dialog class="lb" id="lightbox" aria-label="Certificate viewer">
+    <button type="button" id="lbclose" aria-label="Close">✕</button>
+    <img alt=""><p></p>
+  </dialog>
+</div></section>
 <section class="s" id="meet"><div class="wrap">
   <p class="kicker">Woops wait a sec! 😄</p>
   <p class="kicker">Get To Know Me</p>
@@ -316,6 +345,18 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem
       box.querySelector('.g-actions').innerHTML='<button class="btn" type="button" data-act="next">'+(i<qs.length-1?'Next question \u2192':'See my result')+'</button>';
       box.querySelector('.g-top span:last-child').textContent='Score: '+score}
   });
+})();
+</script>
+<script>
+/* Click a certificate to enlarge it */
+(function(){
+  var dlg=document.getElementById('lightbox');if(!dlg||!dlg.showModal)return;
+  var img=dlg.querySelector('img'),cap=dlg.querySelector('p');
+  document.addEventListener('click',function(e){
+    var c=e.target.closest('.cert');
+    if(c){var t=c.getAttribute('data-caption')||'';
+      img.src=c.getAttribute('data-full');img.alt=t;cap.textContent=t;dlg.showModal();return}
+    if(e.target===dlg||e.target.id==='lbclose'){dlg.close()}});
 })();
 </script>
 </body>
